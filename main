@@ -1,0 +1,569 @@
+import random
+
+import os
+
+#Приветствие и правила игры
+print('Добро пожаловать в игру Крестики-Нолики')
+
+print('''Правила игры:
+         Перед Вами поле
+
+              0 1 2
+            0 - - -
+            1 - - -
+            2 - - -
+
+         Вам необходимо заполнить 3 клетки по горизонатили,
+         вертикали или диагонали
+
+         Вводите свой ход в формат "столбец-строка"
+         "0-0", "0-1" и т.д.
+         Напоминаем, что сторона "Крестиков" ходит первой.''')
+
+player = None
+
+#Цикл выбора сторон
+while True:
+    side = input('''Пожалуйста введите за какого Вы будите играть "Крестики" или "Нолики": ''')
+    if side == 'Крестики':
+        player = 'Крестики'
+        print('Вы выбрали сторону "Крестиков". Ваш ход:')
+        break
+    elif side == 'Нолики':
+        player = 'Нолики'
+        print('Вы выбрали сторону "Нолики". Ходят "Крестики"')
+        break
+    else:
+        print('Вы ввели не правильное значение, попробуйте снова')
+
+
+str0 = '  0 1 2'
+str1 = '0 - - -'
+str2 = '1 - - -'
+str3 = '2 - - -'
+playing_field = f'{str0}, {str1}, {str2}, {str3}'
+
+
+#Функция ходов за Крестики
+def cross():
+    global str1
+    global str2
+    global str3
+    global playing_field
+    kombo = input('Введите комбинацию: ')
+    if kombo == '0-0':
+        str_ = str1.split()
+        if str_[1] == '-':
+            str_[1] = 'X'
+            str1 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+        else:
+            print('Поле занято')
+            return cross()
+        print(playing_field)
+    elif kombo == '0-1':
+        str_ = str2.split()
+        if str_[1] == '-':
+            str_[1] = 'X'
+            str2 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+        else:
+            print('Поле занято')
+            return cross()
+        print(playing_field)
+    elif kombo == '0-2':
+        str_ = str3.split()
+        if str_[1] == '-':
+            str_[1] = 'X'
+            str3 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+        else:
+            print('Поле занято')
+            return cross()
+        print(playing_field)
+    elif kombo == '1-0':
+        str_ = str1.split()
+        if str_[2] == '-':
+            str_[2] = 'X'
+            str1 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+        else:
+            print('Поле занято')
+            return cross()
+        print(playing_field)
+    elif kombo == '1-1':
+        str_ = str2.split()
+        if str_[2] == '-':
+            str_[2] = 'X'
+            str2 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+        else:
+            print('Поле занято')
+            return cross()
+        print(playing_field)
+    elif kombo == '1-2':
+        str_ = str3.split()
+        if str_[2] == '-':
+            str_[2] = 'X'
+            str3 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+        else:
+            print('Поле занято')
+            return cross()
+        print(playing_field)
+    elif kombo == '2-0':
+        str_ = str1.split()
+        if str_[3] == '-':
+            str_[3] = 'X'
+            str1 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+        else:
+            print('Поле занято')
+            return cross()
+        print(playing_field)
+    elif kombo == '2-1':
+        str_ = str2.split()
+        if str_[3] == '-':
+            str_[3] = 'X'
+            str2 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+        else:
+            print('Поле занято')
+            return cross()
+        print(playing_field)
+    elif kombo == '2-2':
+        str_ = str3.split()
+        if str_[3] == '-':
+            str_[3] = 'X'
+            str3 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+        else:
+            print('Поле занято')
+            return cross()
+        print(playing_field)
+    else:
+        print('Неправильная комбинация')
+        return cross()
+
+#Функция ходов за Нолики
+def zero():
+    global str1
+    global str2
+    global str3
+    global playing_field
+    kombo = input('Введите комбинацию: ')
+    if kombo == '0-0':
+        str_ = str1.split()
+        if str_[1] == '-':
+            str_[1] = 'O'
+            str1 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print(playing_field)
+        else:
+            print('Поле занято')
+            return zero()
+
+    elif kombo == '0-1':
+        str_ = str2.split()
+        if str_[1] == '-':
+            str_[1] = 'O'
+            str2 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print(playing_field)
+        else:
+            print('Поле занято')
+            return zero()
+
+    elif kombo == '0-2':
+        str_ = str3.split()
+        if str_[1] == '-':
+            str_[1] = 'O'
+            str3 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print(playing_field)
+        else:
+            print('Поле занято')
+            return zero()
+
+    elif kombo == '1-0':
+        str_ = str1.split()
+        if str_[2] == '-':
+            str_[2] = 'O'
+            str1 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print(playing_field)
+        else:
+            print('Поле занято')
+            return zero()
+
+    elif kombo == '1-1':
+        str_ = str2.split()
+        if str_[2] == '-':
+            str_[2] = 'O'
+            str2 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print(playing_field)
+        else:
+            print('Поле занято')
+            return zero()
+
+    elif kombo == '1-2':
+        str_ = str3.split()
+        if str_[2] == '-':
+            str_[2] = 'O'
+            str3 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print(playing_field)
+        else:
+            print('Поле занято')
+            return zero()
+
+    elif kombo == '2-0':
+        str_ = str1.split()
+        if str_[3] == '-':
+            str_[3] = 'O'
+            str1 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print(playing_field)
+        else:
+            print('Поле занято')
+            return zero()
+
+    elif kombo == '2-1':
+        str_ = str2.split()
+        if str_[3] == '-':
+            str_[3] = 'O'
+            str2 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print(playing_field)
+        else:
+            print('Поле занято')
+            return zero()
+
+    elif kombo == '2-2':
+        str_ = str3.split()
+        if str_[3] == '-':
+            str_[3] = 'O'
+            str3 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print(playing_field)
+        else:
+            print('Поле занято')
+            return zero()
+
+    else:
+        print('Неправильная комбинация')
+        return zero()
+
+#Функция игры компьютера за Крестики
+def cross_comp():
+    global str1
+    global str2
+    global str3
+    global playing_field
+    step = random.choice(['0-0', '0-1', '0-2', '1-0', '1-1', '1-2', '2-0', '2-1', '2-2'])
+    if step == '0-0':
+        str_ = str1.split()
+        if str_[1] == '-':
+            str_[1] = 'X'
+            str1 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print('Крестики сделали ход')
+            print(playing_field)
+        else:
+            return cross_comp()
+
+    elif step == '0-1':
+        str_ = str2.split()
+        if str_[1] == '-':
+            str_[1] = 'X'
+            str2 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print('Крестики сделали ход')
+            print(playing_field)
+        else:
+            return cross_comp()
+
+    elif step == '0-2':
+        str_ = str3.split()
+        if str_[1] == '-':
+            str_[1] = 'X'
+            str3 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print('Крестики сделали ход')
+            print(playing_field)
+        else:
+            return cross_comp()
+
+    elif step == '1-0':
+        str_ = str1.split()
+        if str_[2] == '-':
+            str_[2] = 'X'
+            str1 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print('Крестики сделали ход')
+            print(playing_field)
+        else:
+            return cross_comp()
+
+    elif step == '1-1':
+        str_ = str2.split()
+        if str_[2] == '-':
+            str_[2] = 'X'
+            str2 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print('Крестики сделали ход')
+            print(playing_field)
+        else:
+            return cross_comp()
+
+    elif step == '1-2':
+        str_ = str3.split()
+        if str_[2] == '-':
+            str_[2] = 'X'
+            str3 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print('Крестики сделали ход')
+            print(playing_field)
+        else:
+            return cross_comp()
+
+    elif step == '2-0':
+        str_ = str1.split()
+        if str_[3] == '-':
+            str_[3] = 'X'
+            str1 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print('Крестики сделали ход')
+            print(playing_field)
+        else:
+            return cross_comp()
+
+    elif step == '2-1':
+        str_ = str2.split()
+        if str_[3] == '-':
+            str_[3] = 'X'
+            str2 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print('Крестики сделали ход')
+            print(playing_field)
+        else:
+            return cross_comp()
+
+    elif step == '2-2':
+        str_ = str3.split()
+        if str_[3] == '-':
+            str_[3] = 'X'
+            str3 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print('Крестики сделали ход')
+            print(playing_field)
+        else:
+            return cross_comp()
+
+    else:
+        return cross_comp()
+
+#Функция игры компьютера за Нолики
+def zero_comp():
+    global str1
+    global str2
+    global str3
+    global playing_field
+
+    step = random.choice(['0-0', '0-1', '0-2', '1-0', '1-1', '1-2', '2-0', '2-1', '2-2'])
+    if step == '0-0':
+        str_ = str1.split()
+        if str_[1] == '-':
+            str_[1] = 'O'
+            str1 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print('Нолики сделали ход')
+            print(playing_field)
+        else:
+            return zero_comp()
+
+    elif step == '0-1':
+        str_ = str2.split()
+        if str_[1] == '-':
+            str_[1] = 'O'
+            str2 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print('Нолики сделали ход')
+            print(playing_field)
+        else:
+            return zero_comp()
+
+    elif step == '0-2':
+        str_ = str3.split()
+        if str_[1] == '-':
+            str_[1] = 'O'
+            str3 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print('Нолики сделали ход')
+            print(playing_field)
+        else:
+            return zero_comp()
+
+    elif step == '1-0':
+        str_ = str1.split()
+        if str_[2] == '-':
+            str_[2] = 'O'
+            str1 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print('Нолики сделали ход')
+            print(playing_field)
+        else:
+            return zero_comp()
+
+    elif step == '1-1':
+        str_ = str2.split()
+        if str_[2] == '-':
+            str_[2] = 'O'
+            str2 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print('Нолики сделали ход')
+            print(playing_field)
+        else:
+            return zero_comp()
+
+    elif step == '1-2':
+        str_ = str3.split()
+        if str_[2] == '-':
+            str_[2] = 'O'
+            str3 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print('Нолики сделали ход')
+            print(playing_field)
+        else:
+            return zero_comp()
+
+    elif step == '2-0':
+        str_ = str1.split()
+        if str_[3] == '-':
+            str_[3] = 'O'
+            str1 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print('Нолики сделали ход')
+            print(playing_field)
+        else:
+            return zero_comp()
+
+    elif step == '2-1':
+        str_ = str2.split()
+        if str_[3] == '-':
+            str_[3] = '0'
+            str2 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print('Нолики сделали ход')
+            print(playing_field)
+        else:
+            return zero_comp()
+
+    elif step == '2-2':
+        str_ = str3.split()
+        if str_[3] == '-':
+            str_[3] = 'O'
+            str3 = ' '.join(str_)
+            playing_field = f'{str0} \n {str1} \n {str2} \n {str3}'
+            print('Нолики сделали ход')
+            print(playing_field)
+        else:
+            return zero_comp()
+
+    else:
+        return zero_comp()
+
+def check_win_cross():
+    str_1 = str1.split()
+    str_2 = str2.split()
+    str_3 = str3.split()
+    if str1 == '0 X X X':
+
+        return True
+    elif str_1[1] == "X" and str_2[2] == 'X' and str_3[3] == 'X':
+
+        return True
+    elif str_1[1] == 'X' and str_2[1] == 'X' and str_3[1] == 'X':
+
+        return True
+    elif str_1[2] == 'X' and str_2[2] == 'X' and str_3[2] == 'X':
+
+        return True
+    elif str_1[3] == 'X' and str_2[3] == 'X' and str_3[3] == 'X':
+
+        return True
+    elif str_1[3] == 'X' and str_2[2] == 'X' and str_3[1] == 'X':
+
+        return True
+    elif str2 == '1 X X X':
+
+        return True
+    elif str3 == '2 X X X':
+
+        return True
+    else:
+        return False
+
+def check_win_zero():
+    str_1 = str1.split()
+    str_2 = str2.split()
+    str_3 = str3.split()
+    if str1 == '0 O O O':
+
+        return True
+    elif str_1[1] == "O" and str_2[2] == 'O' and str_3[3] == 'O':
+
+        return True
+    elif str_1[1] == 'O' and str_2[1] == 'O' and str_3[1] == 'O':
+
+        return True
+    elif str_1[2] == 'O' and str_2[2] == 'O' and str_3[2] == 'O':
+
+        return True
+    elif str_1[3] == 'O' and str_2[3] == 'O' and str_3[3] == 'O':
+
+        return True
+    elif str_1[3] == 'O' and str_2[2] == 'O' and str_3[1] == 'O':
+
+        return True
+    elif str2 == '1 O O O':
+
+        return True
+    elif str3 == '2 O O O':
+
+        return True
+    else:
+        return False
+
+while True:
+    if player == 'Крестики':
+
+            check_win_cross()
+            check_win_zero()
+            if check_win_cross() == True:
+                print('Крестики одержали победу')
+                break
+            elif check_win_zero() == True:
+                print('Нолики одержали победу')
+                break
+            else:
+                cross()
+                zero_comp()
+    else:
+            check_win_cross()
+            check_win_zero()
+            if check_win_cross() == True:
+                print('Крестики одержали победу')
+                break
+            elif check_win_zero() == True:
+                print('Нолики одержали победу')
+                break
+            else:
+                cross_comp()
+                zero()
+
+
+
+
+
